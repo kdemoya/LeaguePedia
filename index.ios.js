@@ -1,52 +1,20 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * LeaguePedia | index.android.js
+ *
+ * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
 'use strict';
-import React, {
-  AppRegistry,
-  Component,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+
+// TODO: Standardize Android and iOS entry points.
+import React, { AppRegistry, Component } from 'react-native';
+import ChampionsList from './app/components/ChampionsList';
 
 class LeaguePedia extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+        <ChampionsList />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('LeaguePedia', () => LeaguePedia);
