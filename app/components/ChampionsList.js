@@ -7,7 +7,6 @@
 
 import React, { Component, PropTypes, StyleSheet, Text, View, ScrollView, ListView, Image } from 'react-native';
 import ChampionIcon from './ChampionIcon';
-import * as champs from '../api/champions.json';
 import * as _ from 'lodash';
 import Dimensions from 'Dimensions';
 
@@ -17,7 +16,7 @@ class ChampionsList extends Component {
    * Renders champion icon.
    *
    * @param {Object} champ - Current champion.
-   * @returns {Object} React Component.
+   * @returns {ReactElement} Champion icon.
    */
   renderChamp(champ) {
     return (
@@ -29,8 +28,35 @@ class ChampionsList extends Component {
     );
   }
 
+  /**
+   * Sorts champions by name and generates champions icon.
+   *
+   * @param {Object} champions - List of champions
+   * @returns {ReactElement} Rendered list of champion icons.
+   */
+  renderChampionsList(champions) {
+    return _.chain(champions)
+        .sortBy((champ) => { return champ.name })
+        .map((champ) => { return this.renderChamp(champ) })
+        .value();
+  }
+
+  componentDidMount() {
+    const { store } = this.context;
+
+    this.unsubscribe = store.subscribe(() =>
+      this.forceUpdate()
+    );
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
-    const champsList = _.map(champs, (champ) => { return this.renderChamp(champ)});
+    const { store } = this.context;
+    const state = store.getState();
+    const champsList = this.renderChampionsList(state.champions);
 
     return (
       <Image resizeMode="stretch" style={styles.image} source={require('../assets/background.jpg')}>
@@ -43,6 +69,10 @@ class ChampionsList extends Component {
     );
   }
 }
+
+ChampionsList.contextTypes = {
+  store: React.PropTypes.object
+};
 
 const styles = StyleSheet.create({
   base: {
