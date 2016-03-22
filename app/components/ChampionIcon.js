@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
 });
 
 ChampionIcon.propTypes = {
-  picture: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  picture: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired
 };
 
 export default ChampionIcon;

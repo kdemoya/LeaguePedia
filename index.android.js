@@ -7,7 +7,7 @@
 
 // TODO: Standardize Android and iOS entry points.
 import React, { AppRegistry, Component } from 'react-native';
-import ChampionsList from './app/components/ChampionsList';
+import ChampionsListContainer from './app/containers/ChampionsListContainer';
 import champions from './app/reducers/champions';
 import { createStore } from 'redux';
 import { RiotAPI } from './app/api'
@@ -21,7 +21,7 @@ class LeaguePedia extends Component {
 
     return (
       <Provider store={store}>
-        <ChampionsList />
+        <ChampionsListContainer />
       </Provider>
     );
   }

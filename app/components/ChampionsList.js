@@ -41,22 +41,9 @@ class ChampionsList extends Component {
         .value();
   }
 
-  componentDidMount() {
-    const { store } = this.context;
-
-    this.unsubscribe = store.subscribe(() =>
-      this.forceUpdate()
-    );
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
   render() {
-    const { store } = this.context;
-    const state = store.getState();
-    const champsList = this.renderChampionsList(state.champions);
+    const { champions } = this.props;
+    const champsList = this.renderChampionsList(champions);
 
     return (
       <Image resizeMode="stretch" style={styles.image} source={require('../assets/background.jpg')}>
@@ -70,8 +57,8 @@ class ChampionsList extends Component {
   }
 }
 
-ChampionsList.contextTypes = {
-  store: React.PropTypes.object
+ChampionsList.propTypes = {
+  champions: React.PropTypes.object
 };
 
 const styles = StyleSheet.create({
