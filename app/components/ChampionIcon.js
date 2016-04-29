@@ -6,6 +6,7 @@
 'use strict';
 
 import React, { Component, View, Text, Image, PropTypes, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 class ChampionIcon extends Component {
   render() {
@@ -15,7 +16,7 @@ class ChampionIcon extends Component {
         <View style={styles.base}>
           <Image
               style={styles.picture}
-              source={{uri: 'http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/' + picture + '.png'}}
+              source={{uri: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/champion/' + picture + '.png'}}
           />
           <Text style={styles.text}>{name}</Text>
         </View>
