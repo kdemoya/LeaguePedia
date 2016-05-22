@@ -6,35 +6,53 @@
 'use strict';
 
 import React, { Component, View, Text, Image, ScrollView, PropTypes, StyleSheet } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import Dimensions from 'Dimensions';
-import * as champ from '../api/championDetail.json';
+import ChampionOverview from '../components/ChampionOverview';
+import ChampionSkills from '../components/ChampionSkills';
+import ChampionSkins from '../components/ChampionSkins';
+import ChampionLore from '../components/ChampionLore';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 class ChampionDetails extends Component {
+
+  renderHeader(champion) {
+    return (
+      <Image
+          resizeMode="cover"
+          style={styles.header}
+          source={{uri: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.key + '_0.jpg'}}>
+        <Image resizeMode="cover" style={styles.headerShadow} source={require('../assets/header_shadow.png')}>
+          <Text style={styles.champName}>{champion.name}</Text>
+          <Text style={styles.champTitle}>{champion.title}</Text>
+        </Image>
+      </Image>
+    )
+  }
+
   render() {
-    const lore = champ.lore.replace(/<br>/g, '\n');
+    const { champion } = this.props;
 
     return (
       <View style={styles.base}>
-        <Image
-            resizeMode="cover"
-            style={styles.header}
-            source={{uri: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champ.key + '_0.jpg'}}>
-          <Image resizeMode="cover" style={styles.headerShadow} source={require('../assets/header_shadow.png')}>
-            <Text style={styles.champName}>{champ.name}</Text>
-            <Text style={styles.champTitle}>{champ.title}</Text>
-          </Image>
-        </Image>
-        <ScrollView>
-          <View style={styles.lore}>
-            <Image style={styles.grunge} resizeMode="contain" source={require('../assets/content_grunge.png')} />
-            <Text style={styles.loreText}>{lore}</Text>
-          </View>
-        </ScrollView>
+        { champion && this.renderHeader(champion) }
+        <ScrollableTabView
+            tabBarUnderlineColor="#00bfa5"
+            tabBarBackgroundColor="#0b3e4c"
+            tabBarActiveTextColor="#bbc8cb"
+            tabBarInactiveTextColor="#809aa1" >
+          <ChampionOverview champion={champion} tabLabel="Overview" />
+          <ChampionSkills champion={champion} tabLabel="Skills" />
+          <ChampionSkins champion={champion} tabLabel="Skins" />
+          <ChampionLore lore={champion && champion.lore} tabLabel="Lore" />
+        </ScrollableTabView>
       </View>
     );
   }
 }
+
+ChampionDetails.propTypes = {
+  champion: React.PropTypes.object
+};
 
 const styles = StyleSheet.create({
   base: {
@@ -62,30 +80,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 14,
     fontStyle: 'italic'
-  },
-  lore: {
-    backgroundColor: '#d9c197',
-    width: Dimensions.get('window').width * 0.90,
-    alignSelf: 'center',
-    alignItems: 'flex-start',
-    marginTop: 25,
-    marginBottom: 50,
-    borderRadius: 5,
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 10,
-    shadowOpacity: 1.0,
-    elevation: 5
-  },
-  loreText: {
-    margin: 20,
-    color: '#473415'
-  },
-  grunge: {
-    width: Dimensions.get('window').width * 0.90,
-    height: Dimensions.get('window').height * 0.30,
-    position: 'absolute',
-    justifyContent: 'flex-start'
   }
 });
 

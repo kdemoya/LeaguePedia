@@ -9,7 +9,10 @@
     "lodash": "^4.6.1",
     "react": "^0.14.5",
     "react-native": "^0.22.2",
+    "react-native-button": "^1.5.0",
+    "react-native-linear-gradient": "^1.5.7",
     "react-native-router-flux": "^3.1.5",
+    "react-native-scrollable-tab-view": "^0.4.2",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1"
   }

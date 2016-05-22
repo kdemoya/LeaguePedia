@@ -22,8 +22,10 @@ class ChampionsList extends Component {
     return (
         <ChampionIcon
             key={champ.id}
+            id={champ.id}
             picture={champ.key}
             name={champ.name}
+            dispatch={this.props.dispatch}
         />
     );
   }
@@ -48,9 +50,9 @@ class ChampionsList extends Component {
     return (
       <Image resizeMode="stretch" style={styles.image} source={require('../assets/background.jpg')}>
         <ScrollView>
-            <View style={styles.base}>
-              {champsList}
-            </View>
+          <View style={styles.base}>
+            {champsList}
+          </View>
         </ScrollView>
       </Image>
     );

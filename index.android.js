@@ -6,16 +6,18 @@
 'use strict';
 
 // TODO: Standardize Android and iOS entry points.
-import React, { AppRegistry, Component } from 'react-native';
+import React, { View, AppRegistry, Component } from 'react-native';
 import ChampionsListContainer from './app/containers/ChampionsListContainer';
-import ChampionDetails from './app/components/ChampionDetails';
+import ChampionDetailsContainer from './app/containers/ChampionDetailsContainer';
+import ChampionOverview from './app/components/ChampionOverview';
 import champions from './app/reducers/champions';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { RiotAPI } from './app/api'
-import { Provider } from 'react-redux';
-import { Actions, Scene, Router } from 'react-native-router-flux';
+import { Provider, connect } from 'react-redux';
+import { Actions, Scene, Router, Modal } from 'react-native-router-flux';
 
 const store = createStore(champions);
+const ReduxedRouter = connect()(Router);
 
 class LeaguePedia extends Component {
   render() {
@@ -23,13 +25,14 @@ class LeaguePedia extends Component {
 
     return (
       <Provider store={store}>
-        <ChampionDetails />
-        {/*<Router>
+        <ReduxedRouter>
           <Scene key="root">
-            <Scene key="championList" component={ChampionsListContainer} hideNavBar={true} />
-            <Scene key="championDetails" component={ChampionDetails} hideNavBar={true} />
+            <Scene key="list" hideNavBar={true} initial={true} component={ChampionsListContainer} renderTitle={false} title="Champions List" />
+            <Scene key="details">
+              <Scene key="overview" hideNavBar={true} initial={true} component={ChampionDetailsContainer} title="Champion Overview" />
+            </Scene>
           </Scene>
-        </Router>*/}
+        </ReduxedRouter>
       </Provider>
     );
   }

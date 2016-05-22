@@ -5,8 +5,7 @@
  */
 'use strict';
 
-import { FETCH_CHAMPS, FETCH_SUCESS } from '../actions/actionTypes';
-import { RiotAPI } from '../api'
+import { FETCH_CHAMPS, FETCH_SUCESS, FETCH_SINGLE_SUCCESS } from '../actions/actionTypes';
 
 export default function champions(state = {}, action) {
   switch (action.type) {
@@ -14,6 +13,8 @@ export default function champions(state = {}, action) {
       return state;
     case FETCH_SUCESS:
       return { ...state, champions: action.response };
+    case FETCH_SINGLE_SUCCESS:
+      return { ...state, champion: action.response };
     default:
       return state;
   }
