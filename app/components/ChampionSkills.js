@@ -13,14 +13,14 @@ import * as _ from 'lodash';
 
 class ChampionSkills extends Component {
 
-  renderSkills(skills) {
+  renderSkills(skills, version) {
     return _.map(skills, (skill) => {
       return (
         <View>
           <LinearGradient colors={['#051f24', '#011314']} style={styles.skill}>
             <Image
               style={styles.skillIcon}
-              source={{uri: 'http://ddragon.leagueoflegends.com/cdn/6.9.1/img/spell/' + skill.image.full}}
+              source={{uri: `http://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${skill.image.full}`}}
             />
             <View>
               <Text style={[styles.skillDetail, styles.skillName]}>{skill.name.toUpperCase()}</Text>
@@ -38,12 +38,12 @@ class ChampionSkills extends Component {
   }
 
   render() {
-    const { champion } = this.props;
+    const { champion, version } = this.props;
 
     return (
       <ScrollView>
         <View style={styles.base}>
-          { champion && this.renderSkills(champion.spells) }
+          { champion && this.renderSkills(champion.spells, version) }
         </View>
       </ScrollView>
     );
@@ -51,15 +51,18 @@ class ChampionSkills extends Component {
 }
 
 ChampionSkills.propTypes = {
-  champion: React.PropTypes.object
+  champion: React.PropTypes.object,
+  version: React.PropTypes.string
 };
 
 const styles = StyleSheet.create({
   base: {
     backgroundColor: '#051d25',
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-    padding: 10
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 20,
+    paddingLeft: 10
   },
   skill: {
     padding: 5,

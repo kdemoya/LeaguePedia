@@ -17,14 +17,14 @@ class ChampionIcon extends Component {
   }
 
   render() {
-    const { id, picture, name } = this.props;
+    const { id, picture, name, version } = this.props;
 
     return (
         <View style={styles.base}>
           <TouchableHighlight onPress={ () => { this.handleChampSelection(id) }}>
             <Image
               style={styles.picture}
-              source={{uri: 'http://ddragon.leagueoflegends.com/cdn/6.7.1/img/champion/' + picture + '.png'}}
+              source={{uri: `http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${picture}.png`}}
             />
           </TouchableHighlight>
           <Text style={styles.text}>{name}</Text>
@@ -53,7 +53,8 @@ ChampionIcon.propTypes = {
   id: React.PropTypes.string.isRequired,
   picture: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
+  dispatch: React.PropTypes.func.isRequired,
+  version: React.PropTypes.string.isRequired
 };
 
 export default ChampionIcon;

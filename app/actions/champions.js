@@ -5,24 +5,31 @@
  */
 'use strict';
 
-import { FETCH_CHAMPS, FETCH_SUCESS, FETCH_SINGLE_SUCCESS } from './actionTypes';
+import * as types from './actionTypes';
 
 export const fetchChamps = () => {
   return {
-    type: FETCH_CHAMPS
+    type: types.FETCH_CHAMPS
+  }
+};
+
+export const fetchVersion = (response) => {
+  return {
+    type: types.FETCH_VERSION,
+    response
   }
 };
 
 export const fetchSuccess = (response) => {
   return {
-    type: FETCH_SUCESS,
+    type: types.FETCH_SUCESS,
     response
   }
 };
 
 export const fetchSingleSuccess = (response) => {
   return {
-    type: FETCH_SINGLE_SUCCESS,
+    type: types.FETCH_SINGLE_SUCCESS,
     response
   }
 };

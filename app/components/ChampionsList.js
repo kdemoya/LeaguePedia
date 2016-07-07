@@ -26,6 +26,7 @@ class ChampionsList extends Component {
             picture={champ.key}
             name={champ.name}
             dispatch={this.props.dispatch}
+            version={this.props.version}
         />
     );
   }
@@ -60,7 +61,8 @@ class ChampionsList extends Component {
 }
 
 ChampionsList.propTypes = {
-  champions: React.PropTypes.object
+  champions: React.PropTypes.object,
+  version: React.PropTypes.string
 };
 
 const styles = StyleSheet.create({

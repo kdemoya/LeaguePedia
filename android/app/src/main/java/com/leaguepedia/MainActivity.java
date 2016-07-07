@@ -1,4 +1,4 @@
-package com.leaguepedia;
+package com.kdemoya.leaguepedia;
 
 import com.facebook.react.ReactActivity;
 import com.BV.LinearGradient.LinearGradientPackage;

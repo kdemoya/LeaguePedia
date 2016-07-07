@@ -34,4 +34,5 @@ node_modules/
 npm-debug.log
 
 configs.js
+app/constants/configs/index.js
 *.keystore

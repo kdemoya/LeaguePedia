@@ -32,14 +32,12 @@ ChampionLore.propTypes = {
 
 const styles = StyleSheet.create({
   base: {
-    backgroundColor: '#051d25',
-    height: Dimensions.get('window').height
+    backgroundColor: '#051d25'
   },
   lore: {
     backgroundColor: '#d9c197',
     width: Dimensions.get('window').width * 0.90,
     alignSelf: 'center',
-    alignItems: 'flex-start',
     marginTop: 25,
     marginBottom: 50,
     borderRadius: 5,
@@ -54,10 +52,12 @@ const styles = StyleSheet.create({
     color: '#473415'
   },
   grunge: {
-    width: Dimensions.get('window').width * 0.90,
+    width: Dimensions.get('window').width,
     height: Dimensions.get('window').height * 0.30,
     position: 'absolute',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    marginTop: -100,
+    marginLeft: -25
   }
 });
 

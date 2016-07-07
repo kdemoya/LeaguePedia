@@ -10,7 +10,8 @@ import ChampionDetails from '../components/ChampionDetails';
 
 const mapStateToProps = (state) => {
   return {
-    champion: state.champion
+    champion: state.champion,
+    version: state.version
   }
 };
 

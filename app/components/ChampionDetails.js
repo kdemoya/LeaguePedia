@@ -20,7 +20,7 @@ class ChampionDetails extends Component {
       <Image
           resizeMode="cover"
           style={styles.header}
-          source={{uri: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.key + '_0.jpg'}}>
+          source={{uri: `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.key}_0.jpg`}}>
         <Image resizeMode="cover" style={styles.headerShadow} source={require('../assets/header_shadow.png')}>
           <Text style={styles.champName}>{champion.name}</Text>
           <Text style={styles.champTitle}>{champion.title}</Text>
@@ -30,7 +30,7 @@ class ChampionDetails extends Component {
   }
 
   render() {
-    const { champion } = this.props;
+    const { champion, version } = this.props;
 
     return (
       <View style={styles.base}>
@@ -41,7 +41,7 @@ class ChampionDetails extends Component {
             tabBarActiveTextColor="#bbc8cb"
             tabBarInactiveTextColor="#809aa1" >
           <ChampionOverview champion={champion} tabLabel="Overview" />
-          <ChampionSkills champion={champion} tabLabel="Skills" />
+          <ChampionSkills champion={champion} version={version} tabLabel="Skills" />
           <ChampionSkins champion={champion} tabLabel="Skins" />
           <ChampionLore lore={champion && champion.lore} tabLabel="Lore" />
         </ScrollableTabView>
@@ -51,7 +51,8 @@ class ChampionDetails extends Component {
 }
 
 ChampionDetails.propTypes = {
-  champion: React.PropTypes.object
+  champion: React.PropTypes.object,
+  version: React.PropTypes.string
 };
 
 const styles = StyleSheet.create({
