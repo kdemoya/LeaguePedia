@@ -3,9 +3,16 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-import React, { Component, View, Text, Image, PropTypes, StyleSheet, TouchableHighlight } from 'react-native';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableHighlight
+} from 'react-native';
+import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import { RiotAPI } from '../api'
 
@@ -18,13 +25,12 @@ class ChampionIcon extends Component {
 
   render() {
     const { id, picture, name, version } = this.props;
-
     return (
         <View style={styles.base}>
           <TouchableHighlight onPress={ () => { this.handleChampSelection(id) }}>
             <Image
               style={styles.picture}
-              source={{uri: `http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${picture}.png`}}
+              source={{uri: `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`}}
             />
           </TouchableHighlight>
           <Text style={styles.text}>{name}</Text>
@@ -50,11 +56,11 @@ const styles = StyleSheet.create({
 });
 
 ChampionIcon.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  picture: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired,
-  version: React.PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  version: PropTypes.string.isRequired
 };
 
 export default ChampionIcon;
