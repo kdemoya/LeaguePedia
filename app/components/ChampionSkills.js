@@ -22,7 +22,7 @@ class ChampionSkills extends Component {
   renderSkills(skills, version) {
     return _.map(skills, (skill) => {
       return (
-        <View>
+        <View key={skill.id}>
           <LinearGradient colors={['#051f24', '#011314']} style={styles.skill}>
             <Image
               style={styles.skillIcon}
@@ -36,7 +36,7 @@ class ChampionSkills extends Component {
           </LinearGradient>
           <View style={styles.description}>
             <Image style={styles.grunge} resizeMode="contain" source={require('../assets/content_grunge.png')} />
-            <Text style={styles.descriptionText}>{skill.sanitizedDescription}</Text>
+            <Text style={styles.descriptionText}>{skill.description}</Text>
           </View>
         </View>
       )
