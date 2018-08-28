@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 
 class ChampionLore extends Component {
   render() {
-    const { lore: { lore } } = this.props;
+    const { lore } = this.props;
 
     return (
       <ScrollView>

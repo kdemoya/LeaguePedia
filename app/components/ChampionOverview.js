@@ -23,7 +23,7 @@ class ChampionOverview extends Component {
       const statPerLvl = stats[stat + 'perlevel'];
 
       return (
-        <View style={styles.stat}>
+        <View key={stat} style={styles.stat}>
           <View>
             <Text style={styles.statName}>{stat.toUpperCase()}</Text>
             <View style={styles.valueWrapper}>
@@ -42,7 +42,7 @@ class ChampionOverview extends Component {
       const className = (index + 1) <= level ? name : 'emptyInfoBar';
 
       return (
-        <View style={[styles.infoBarIndicator, styles[className]]} />
+        <View key={index} style={[styles.infoBarIndicator, styles[className]]} />
       )
     });
   };
@@ -52,7 +52,7 @@ class ChampionOverview extends Component {
 
     return _.map(_.keys(infos), (infoName) => {
       return (
-        <View style={styles.infoBar}>
+        <View key={infoName} style={styles.infoBar}>
           <Text style={styles.infoName}>{infoName.toUpperCase()}</Text>
           { _this.renderInfoBar(infoName, infos[infoName]) }
         </View>

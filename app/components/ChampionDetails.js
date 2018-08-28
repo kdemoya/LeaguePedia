@@ -48,7 +48,7 @@ class ChampionDetails extends Component {
           <ChampionOverview champion={champion} tabLabel="Overview" />
           <ChampionSkills champion={champion} version={version} tabLabel="Skills" />
           <ChampionSkins champion={champion} tabLabel="Skins" />
-          <ChampionLore lore={champion} tabLabel="Lore" />
+          <ChampionLore lore={champion && champion.lore} tabLabel="Lore" />
         </ScrollableTabView>
       </View>
     );
