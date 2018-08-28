@@ -3,18 +3,19 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
 // TODO: Standardize Android and iOS entry points.
-import React, { View, AppRegistry, Component } from 'react-native';
+import React, { Component } from 'react';
+import {
+  AppRegistry
+} from 'react-native';
 import ChampionsListContainer from './app/containers/ChampionsListContainer';
 import ChampionDetailsContainer from './app/containers/ChampionDetailsContainer';
-import ChampionOverview from './app/components/ChampionOverview';
 import champions from './app/reducers/champions';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { RiotAPI } from './app/api'
 import { Provider, connect } from 'react-redux';
-import { Actions, Scene, Router, Modal } from 'react-native-router-flux';
+import { Scene, Router } from 'react-native-router-flux';
 
 const store = createStore(champions);
 const ReduxedRouter = connect()(Router);

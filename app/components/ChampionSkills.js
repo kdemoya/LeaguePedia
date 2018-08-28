@@ -3,11 +3,17 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-
-import React, { Component, View, Text, Image, ScrollView, PropTypes, StyleSheet } from 'react-native';
-import Dimensions from 'Dimensions';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
+import PropTypes from 'prop-types';
 import LinearGradient from 'react-native-linear-gradient';
 import * as _ from 'lodash';
 
@@ -16,11 +22,11 @@ class ChampionSkills extends Component {
   renderSkills(skills, version) {
     return _.map(skills, (skill) => {
       return (
-        <View>
+        <View key={skill.id}>
           <LinearGradient colors={['#051f24', '#011314']} style={styles.skill}>
             <Image
               style={styles.skillIcon}
-              source={{uri: `http://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${skill.image.full}`}}
+              source={{uri: `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${skill.image.full}`}}
             />
             <View>
               <Text style={[styles.skillDetail, styles.skillName]}>{skill.name.toUpperCase()}</Text>
@@ -30,7 +36,7 @@ class ChampionSkills extends Component {
           </LinearGradient>
           <View style={styles.description}>
             <Image style={styles.grunge} resizeMode="contain" source={require('../assets/content_grunge.png')} />
-            <Text style={styles.descriptionText}>{skill.sanitizedDescription}</Text>
+            <Text style={styles.descriptionText}>{skill.description}</Text>
           </View>
         </View>
       )
@@ -51,8 +57,8 @@ class ChampionSkills extends Component {
 }
 
 ChampionSkills.propTypes = {
-  champion: React.PropTypes.object,
-  version: React.PropTypes.string
+  champion: PropTypes.object,
+  version: PropTypes.string
 };
 
 const styles = StyleSheet.create({

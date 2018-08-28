@@ -3,23 +3,29 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-import React, { Component, View, Text, Image, ScrollView, PropTypes, StyleSheet } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import Dimensions from 'Dimensions';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
+import PropTypes from 'prop-types';
 import * as _ from 'lodash';
 
 class ChampionSkins extends Component {
   renderSkinsList(champion) {
     return _.map(champion.skins, (skin) => {
-      const skinId = champion.key + '_' + skin.num;
+      const skinId = champion.name + '_' + skin.num;
 
       return (
           <View style={styles.skin} key={skinId}>
             <Image
                 style={styles.picture}
-                source={{uri: 'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + skinId + '.jpg'}}
+                source={{uri: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + skinId + '.jpg'}}
             />
             <Text style={styles.skinName}>{skin.name}</Text>
           </View>
@@ -44,7 +50,7 @@ class ChampionSkins extends Component {
 }
 
 ChampionSkins.propTypes = {
-  champion: React.PropTypes.object
+  champion: PropTypes.object
 };
 
 const styles = StyleSheet.create({
