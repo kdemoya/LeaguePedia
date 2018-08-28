@@ -7,13 +7,23 @@
   },
   "dependencies": {
     "lodash": "^4.6.1",
-    "react": "^0.14.5",
-    "react-native": "^0.22.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-native": "^0.56.0",
     "react-native-button": "^1.5.0",
-    "react-native-linear-gradient": "^1.5.7",
+    "react-native-linear-gradient": "^2.4.0",
     "react-native-router-flux": "^3.1.5",
-    "react-native-scrollable-tab-view": "^0.4.2",
+    "react-native-scrollable-tab-view": "^0.8.0",
     "react-redux": "^4.4.1",
     "redux": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.0",
+    "babel-preset-react-native": "^5",
+    "jest": "23.4.1",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
