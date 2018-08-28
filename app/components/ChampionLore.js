@@ -3,22 +3,28 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-import React, { Component, View, Text, Image, ScrollView, PropTypes, StyleSheet } from 'react-native';
-import Dimensions from 'Dimensions';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
+import PropTypes from 'prop-types';
 
 class ChampionLore extends Component {
   render() {
-    const { lore } = this.props;
-    const parsedLore = lore && lore.replace(/<br>/g, '\n');
+    const { lore: { lore } } = this.props;
 
     return (
       <ScrollView>
         <View style={styles.base}>
           <View style={styles.lore}>
             <Image style={styles.grunge} resizeMode="contain" source={require('../assets/content_grunge.png')} />
-            <Text style={styles.loreText}>{ parsedLore }</Text>
+            <Text style={styles.loreText}>{ lore }</Text>
           </View>
         </View>
       </ScrollView>
@@ -27,7 +33,7 @@ class ChampionLore extends Component {
 }
 
 ChampionLore.propTypes = {
-  lore: React.PropTypes.string.isRequired
+  lore: PropTypes.string.isRequired
 };
 
 const styles = StyleSheet.create({
