@@ -3,10 +3,16 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-import React, { Component, View, Text, Image, ScrollView, PropTypes, StyleSheet } from 'react-native';
-import Dimensions from 'Dimensions';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
+import PropTypes from 'prop-types';
 import ChampionOverview from '../components/ChampionOverview';
 import ChampionSkills from '../components/ChampionSkills';
 import ChampionSkins from '../components/ChampionSkins';
@@ -17,21 +23,20 @@ class ChampionDetails extends Component {
 
   renderHeader(champion) {
     return (
-      <Image
+      <ImageBackground
           resizeMode="cover"
           style={styles.header}
-          source={{uri: `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.key}_0.jpg`}}>
-        <Image resizeMode="cover" style={styles.headerShadow} source={require('../assets/header_shadow.png')}>
+          source={{uri: `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion.id}_0.jpg`}}>
+        <ImageBackground resizeMode="cover" style={styles.headerShadow} source={require('../assets/header_shadow.png')}>
           <Text style={styles.champName}>{champion.name}</Text>
           <Text style={styles.champTitle}>{champion.title}</Text>
-        </Image>
-      </Image>
+        </ImageBackground>
+      </ImageBackground>
     )
   }
 
   render() {
     const { champion, version } = this.props;
-
     return (
       <View style={styles.base}>
         { champion && this.renderHeader(champion) }
@@ -43,7 +48,7 @@ class ChampionDetails extends Component {
           <ChampionOverview champion={champion} tabLabel="Overview" />
           <ChampionSkills champion={champion} version={version} tabLabel="Skills" />
           <ChampionSkins champion={champion} tabLabel="Skins" />
-          <ChampionLore lore={champion && champion.lore} tabLabel="Lore" />
+          <ChampionLore lore={champion} tabLabel="Lore" />
         </ScrollableTabView>
       </View>
     );
@@ -51,8 +56,8 @@ class ChampionDetails extends Component {
 }
 
 ChampionDetails.propTypes = {
-  champion: React.PropTypes.object,
-  version: React.PropTypes.string
+  champion: PropTypes.object,
+  version: PropTypes.string
 };
 
 const styles = StyleSheet.create({
