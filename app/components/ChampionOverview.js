@@ -3,10 +3,15 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-import React, { Component, View, Text, Image, ScrollView, PropTypes, StyleSheet } from 'react-native';
-import Dimensions from 'Dimensions';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
+import PropTypes from 'prop-types';
 import * as _ from 'lodash';
 
 class ChampionOverview extends Component {
@@ -72,7 +77,7 @@ class ChampionOverview extends Component {
 }
 
 ChampionOverview.propTypes = {
-  champion: React.PropTypes.object
+  champion: PropTypes.object
 };
 
 const styles = StyleSheet.create({
@@ -124,7 +129,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   infoName: {
     color: '#f5f5f5',
