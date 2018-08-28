@@ -3,12 +3,18 @@
  *
  * @author Kelvin De Moya <http://github.com/kdemoya>.
  */
-'use strict';
 
-import React, { Component, PropTypes, StyleSheet, Text, View, ScrollView, ListView, Image } from 'react-native';
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  ImageBackground,
+  Dimensions
+} from 'react-native';
+import PropTypes from 'prop-types';
 import ChampionIcon from './ChampionIcon';
 import * as _ from 'lodash';
-import Dimensions from 'Dimensions';
 
 class ChampionsList extends Component {
 
@@ -47,22 +53,21 @@ class ChampionsList extends Component {
   render() {
     const { champions } = this.props;
     const champsList = this.renderChampionsList(champions);
-
     return (
-      <Image resizeMode="stretch" style={styles.image} source={require('../assets/background.jpg')}>
+      <ImageBackground resizeMode="stretch" style={styles.image} source={require('../assets/background.jpg')}>
         <ScrollView>
           <View style={styles.base}>
             {champsList}
           </View>
         </ScrollView>
-      </Image>
+      </ImageBackground>
     );
   }
 }
 
 ChampionsList.propTypes = {
-  champions: React.PropTypes.object,
-  version: React.PropTypes.string
+  champions: PropTypes.object,
+  version: PropTypes.string
 };
 
 const styles = StyleSheet.create({
